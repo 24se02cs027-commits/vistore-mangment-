@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Visitor Management System</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
+
+.box{
+
+width:400px;
+background:white;
+padding:20px;
+margin:50px auto;
+border-radius:10px;
+box-shadow:0px 0px 10px gray;
+
+}
+
+h2{
+text-align:center;
+}
+
+input{
+
+width:100%;
+padding:12px;
+margin-top:10px;
+
+}
+
+button{
+
+width:100%;
+padding:12px;
+margin-top:15px;
+background:blue;
+color:white;
+border:none;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:darkblue;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Visitor Form</h2>
+
+<input type="text" id="name" placeholder="Visitor Name">
+
+<input type="text" id="company" placeholder="Company">
+
+<input type="text" id="floor" placeholder="Floor">
+
+<input type="date" id="date">
+
+<input type="time" id="timein">
+
+<input type="time" id="timeout">
+
+<button onclick="saveData()">Save</button>
+
+</div>
+
+<script>
+
+function saveData(){
+
+let name=document.getElementById("name").value;
+
+let company=document.getElementById("company").value;
+
+let floor=document.getElementById("floor").value;
+
+let date=document.getElementById("date").value;
+
+let timein=document.getElementById("timein").value;
+
+let timeout=document.getElementById("timeout").value;
+
+fetch("https://script.google.com/macros/s/AKfycbwMoHF_3S97JuHXbJ48YjrzthWS68mHgzSI1pMrzKRhpGvLGd6z_1jrRccCpN-tZSut8w/exec", {
+
+method:"POST",
+
+mode:"no-cors",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+name:name,
+
+company:company,
+
+floor:floor,
+
+date:date,
+
+timein:timein,
+
+timeout:timeout
+
+})
+
+})
+
+.then(() => {
+
+alert("Data Saved Successfully");
+
+document.getElementById("name").value="";
+document.getElementById("company").value="";
+document.getElementById("floor").value="";
+document.getElementById("date").value="";
+document.getElementById("timein").value="";
+document.getElementById("timeout").value="";
+
+})
+
+.catch(error => {
+
+console.log(error);
+
+alert("Error");
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
